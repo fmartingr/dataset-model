@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from setuptools import setup
+from setuptools import setup, find_packages
 import re
 import os
 import sys
@@ -15,31 +15,6 @@ def get_version(package):
     return re.search(
         "^__version__ = ['\"]([^'\"]+)['\"]",
         init_py, re.MULTILINE).group(1)
-
-
-def get_packages(package):
-    """
-    Return root package and all sub-packages.
-    """
-    return [dirpath
-            for dirpath, dirnames, filenames in os.walk(package)
-            if os.path.exists(os.path.join(dirpath, '__init__.py'))]
-
-
-def get_package_data(package):
-    """
-    Return all files under the root package, that are not in a
-    package themselves.
-    """
-    walk = [(dirpath.replace(package + os.sep, '', 1), filenames)
-            for dirpath, dirnames, filenames in os.walk(package)
-            if not os.path.exists(os.path.join(dirpath, '__init__.py'))]
-
-    filepaths = []
-    for base, filenames in walk:
-        filepaths.extend([os.path.join(base, filename)
-                          for filename in filenames])
-    return {package: filepaths}
 
 
 package = 'dataset_model'
@@ -64,8 +39,8 @@ setup(
     author='Felipe Martin',
     author_email='fmartingr@me.com',
     keywords='sql sqlalchemy utility dataset',
-    packages=get_packages(package),
-    package_data=get_package_data(package),
+    packages=get_packages(),
+    package_data={'': 'requirements.txt'},
     install_requires=open('requirements.txt').read().split('\n'),
     classifiers=[
         'Development Status :: 5 - Production/Stable',
