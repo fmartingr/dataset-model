@@ -39,7 +39,7 @@ setup(
     author='Felipe Martin',
     author_email='fmartingr@me.com',
     keywords='sql sqlalchemy utility dataset',
-    packages=get_packages(),
+    packages=find_packages(),
     package_data={'': 'requirements.txt'},
     install_requires=open('requirements.txt').read().split('\n'),
     classifiers=[
