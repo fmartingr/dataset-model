@@ -40,7 +40,6 @@ setup(
     author_email='fmartingr@me.com',
     keywords='sql sqlalchemy utility dataset',
     packages=find_packages(),
-    package_data={'': ['requirements.txt']},
     install_requires=open('requirements.txt').read().split('\n'),
     classifiers=[
         'Development Status :: 5 - Production/Stable',
