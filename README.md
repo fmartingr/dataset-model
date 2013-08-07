@@ -12,7 +12,8 @@ pip install dataset-model
 Basic usage:
 
 ```
-from dataset_model import Model
+from dataset_model.models import Model
+import dataset
 
 # Define your model
 class Weather(Model):
@@ -24,8 +25,11 @@ class Weather(Model):
         ('place', None),
     ]
 
+# Create the engine
+engine = dataset.connect('sqlite:///:memory:')
+
 # Create your object and field values
-item = Weather(temperature=32)
+item = Weather(_engine=engine, temperature=32)
 item.place = 'Madrid'
 
 # Saves to database
